@@ -1,16 +1,17 @@
 # Copyright (c) Ecometrica. All rights reserved.
 # Distributed under the BSD license. See LICENSE for details.
 from __future__ import print_function
+
 import glob
 import io
 import os
 import re
 
-import vinaigrette
-
-from django.core.management.base import ALL_CHECKS, CommandError
+from django.core.management.base import CommandError
 from django.core.management.commands import makemessages as django_makemessages
 from django.utils.translation import gettext
+
+import vinaigrette
 
 
 def _get_po_paths(locales=[]):
@@ -70,7 +71,7 @@ class Command(django_makemessages.Command):
             help="Keep the temporary vinaigrette-deleteme.py file."
         )
 
-    requires_system_checks = ALL_CHECKS
+    requires_system_checks = []
 
     def handle(self, *args, **options):
         if not options.get('avec-vinaigrette'):
